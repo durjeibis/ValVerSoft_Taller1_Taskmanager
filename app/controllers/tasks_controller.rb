@@ -36,6 +36,7 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
+    @users =  User.all.map { |user| [ user.name ]  }
   end
 
   # POST /tasks
@@ -58,7 +59,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
-
+    @users =  User.all.map { |user| [ user.name ]  }
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
